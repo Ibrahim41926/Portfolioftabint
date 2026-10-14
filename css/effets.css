@@ -1,0 +1,127 @@
+/* ==========================================================================
+   effets.css — Styles des effets visuels (scripts : js/effets.js)
+   Uniquement transform, opacity, clip-path et filter pour les animations.
+   Tout ce qui bouge est coupé avec « réduire les animations ».
+   Activation / désactivation : bloc « effets » dans js/data.js.
+   ========================================================================== */
+
+/* ---------- 1. Hero vivant : zoom très lent de la photo (Ken Burns) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-vivant .hero__img img { animation: ken-burns 20s ease-in-out infinite alternate; }
+}
+/* Chaque ligne du nom a la largeur de son texte : en s'écartant au défilement,
+   elle ne dépasse jamais du bord de l'écran */
+.hero-vivant .hero__line { width: fit-content; }
+@keyframes ken-burns {
+  from { scale: 1; }
+  to { scale: 1.08; }
+}
+
+/* ---------- 2. Photos du parcours ---------- */
+/* Pendant la révélation, GSAP anime l'image : seul le zoom au survol reste en CSS */
+.photo--revelee img { transition: scale 1.2s var(--ease); }
+
+/* Au survol (souris) : fin liseré doré autour du cadre (le zoom existe déjà) */
+.tile::after {
+  content: ""; position: absolute; inset: 0; z-index: 4;
+  border: 1px solid var(--or);
+  opacity: 0; pointer-events: none;
+  transition: opacity .45s var(--ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover::after { opacity: 1; }
+}
+
+/* ---------- 4. Bandeau défilant ---------- */
+.bandeau {
+  position: relative;
+  overflow: hidden;                 /* aucun défilement horizontal de la page */
+  background: var(--noir);
+  padding-block: clamp(1.4rem, 4vw, 3rem);
+}
+.bandeau__piste { display: flex; width: max-content; }
+.bandeau__bloc { display: flex; align-items: center; flex: none; }
+.bandeau__mot {
+  padding-inline: .32em;
+  font-family: var(--serif); font-weight: 400; font-style: normal;
+  font-size: clamp(3rem, 9vw, 8rem); line-height: 1.05;
+  letter-spacing: .02em; text-transform: uppercase; white-space: nowrap;
+  color: var(--or);                 /* repli si le contour n'est pas pris en charge */
+}
+@supports (-webkit-text-stroke: 1px black) {
+  .bandeau__mot { color: transparent; -webkit-text-stroke: 1px var(--or); }
+}
+.bandeau__etoile { flex: none; color: var(--or); font-size: clamp(1.1rem, 2.8vw, 2.4rem); line-height: 1; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .bandeau__piste { animation: bandeau-defile 45s linear infinite; will-change: transform; }
+  .bandeau.est-hors-ecran .bandeau__piste { animation-play-state: paused; }
+}
+@keyframes bandeau-defile {
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- 5. Reflet doré (badges et titre du chapitre 06) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .reflet-dore .badges li { position: relative; overflow: hidden; }
+  /* Titre du chapitre 06 : cadre ajouté par effets.js, qui contient le reflet */
+  .reflet-dore .apogee__title { position: relative; }
+  .reflet { position: absolute; inset: -.1em -.3em; overflow: hidden; pointer-events: none; }
+  .reflet-dore .badges li::after,
+  .reflet__bande {
+    content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 40%;
+    pointer-events: none;
+    background: linear-gradient(100deg,
+      transparent 15%,
+      color-mix(in srgb, color-mix(in srgb, var(--or) 55%, var(--blanc)) 42%, transparent) 50%,
+      transparent 85%);
+    transform: translateX(-130%) skewX(-18deg);
+    animation: reflet 4.6s ease-in-out infinite;
+  }
+  .reflet-dore .badges li:nth-child(2)::after { animation-delay: .35s; }
+  .reflet-dore .badges li:nth-child(3)::after { animation-delay: .7s; }
+  .reflet__bande { width: 30%; animation-duration: 5s; animation-delay: 1s; }
+}
+/* Le reflet traverse en ~1 s, puis attend le passage suivant */
+@keyframes reflet {
+  0% { transform: translateX(-130%) skewX(-18deg); }
+  24%, 100% { transform: translateX(380%) skewX(-18deg); }
+}
+
+/* ---------- 6. Transitions de fond entre sections ---------- */
+/* Voile de la couleur précédente, effacé au défilement par effets.js */
+.fondu-zone { position: relative; isolation: isolate; }
+.fondu-voile {
+  position: absolute; inset: 0; z-index: -1;
+  background: var(--voile);
+  pointer-events: none;
+}
+/* Le chapitre 06 déborde sur toute la largeur de l'écran : le voile aussi */
+.chapter--apogee > .fondu-voile { box-shadow: 0 0 0 100vmax var(--voile); }
+
+/* ---------- 8. Curseur doré (souris uniquement) ---------- */
+.cursor { display: none; }
+.has-cursor .cursor {
+  display: block;
+  position: fixed; top: 0; left: 0; z-index: 200;
+  pointer-events: none;
+  opacity: 0; transition: opacity .3s;
+}
+.has-cursor .cursor.is-visible { opacity: 1; }
+/* Un disque de 76 px réduit par « scale » : tailles animées sans recalcul de mise en page */
+.cursor__rond {
+  position: absolute; left: -38px; top: -38px;
+  width: 76px; height: 76px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--or);
+  transform: scale(.12);
+  transition: transform .45s var(--ease), opacity .3s;
+}
+.cursor.is-lien .cursor__rond { transform: scale(.06); }
+.cursor.is-photo .cursor__rond { transform: scale(1); opacity: .92; }
+.cursor__texte {
+  font-size: .6rem; letter-spacing: .26em; text-transform: uppercase; font-weight: 400;
+  color: var(--noir);
+  opacity: 0; transition: opacity .25s;
+}
+.cursor.is-photo .cursor__texte { opacity: 1; transition-delay: .1s; }

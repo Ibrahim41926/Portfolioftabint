@@ -1,0 +1,13 @@
+{
+  "name": "miss-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio de Fatoumata Binta Diallo, candidate Miss Guinée France 2027",
+  "scripts": {
+    "photos": "node scripts/generer-liste-photos.js",
+    "optimiser": "node scripts/optimiser-photos.js"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

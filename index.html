@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Fatoumata Binta Diallo · Candidate Miss Guinée France 2027</title>
+  <meta name="description" content="Portfolio de Fatoumata Binta Diallo, candidate Miss Guinée France 2027 : son parcours, de ses premiers défilés à Miss Guinée France, et son projet pour les sites balnéaires de Guinée.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="author" content="Fatoumata Binta Diallo">
+
+  <!-- Partage sur les réseaux (Open Graph / Twitter).
+       L'image est mise à jour automatiquement par scripts/generer-liste-photos
+       avec la 1re photo du dossier 00-portrait. -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Fatoumata Binta Diallo">
+  <meta property="og:title" content="Fatoumata Binta Diallo · Candidate Miss Guinée France 2027">
+  <meta property="og:description" content="« Une jeune femme qui ose croire en ses rêves. » Découvrez mon parcours, du primaire à Miss Guinée France.">
+  <meta property="og:image" content="assets/photos/00-portrait/WhatsApp%20Image%202026-10-13%20at%2017.29.30.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fatoumata Binta Diallo · Candidate Miss Guinée France 2027">
+  <meta name="twitter:description" content="« Une jeune femme qui ose croire en ses rêves. » Découvrez mon parcours, du primaire à Miss Guinée France.">
+  <meta name="twitter:image" content="assets/photos/00-portrait/WhatsApp%20Image%202026-10-13%20at%2017.29.30.jpeg">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Polices : Bodoni Moda (titres) + Jost (texte) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Jost:wght@300;400;500&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/effets.css">
+  <!-- Contenu du site (chargé tôt pour décider de l'intro avant l'affichage) -->
+  <script src="js/data.js"></script>
+  <!-- Signale au CSS que JavaScript est actif (active les animations),
+       puis décide si l'intro cinématique doit être jouée : une seule fois
+       par session, jamais si « réduire les animations » est activé. -->
+  <script>
+    (function () {
+      var r = document.documentElement;
+      r.classList.add('js');
+      try {
+        var e = (window.SITE && window.SITE.effets) || {};
+        if (e.intro === false) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (window.sessionStorage.getItem('intro-vue')) return;
+        r.classList.add('intro-on', 'intro-attente');
+        // Sécurité : si l'intro ne démarre pas (réseau coupé…), le site s'affiche quand même
+        setTimeout(function () { r.classList.remove('intro-on', 'intro-attente'); }, 6000);
+      } catch (err) { /* stockage indisponible : pas d'intro */ }
+    })();
+  </script>
+</head>
+<body>
+  <!-- ===================== INTRO CINÉMATIQUE (js/intro.js) ===================== -->
+  <div class="intro">
+    <div class="intro__panneau intro__panneau--haut"></div>
+    <div class="intro__panneau intro__panneau--bas"></div>
+    <div class="intro__contenu" aria-hidden="true">
+      <svg class="intro__couronne" viewBox="0 0 40 34">
+        <path pathLength="1" d="M5 26 3 8l9 8 8-13 8 13 9-8-2 18Z"/>
+        <path pathLength="1" d="M6 30h28"/>
+      </svg>
+      <p class="intro__nom"></p>
+      <p class="intro__titre"></p>
+    </div>
+    <button class="intro__passer" type="button">Passer</button>
+  </div>
+
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <!-- ===================== EN-TÊTE ===================== -->
+  <header class="site-header" id="en-tete">
+    <div class="container site-header__inner">
+      <a class="logo" href="#accueil" aria-label="Retour à l'accueil">
+        <svg class="logo__crown" viewBox="0 0 40 32" aria-hidden="true"><path d="M5 26 3 8l9 8 8-13 8 13 9-8-2 18Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 30h28" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="logo__text">F. B. Diallo</span>
+      </a>
+      <nav class="nav" aria-label="Navigation principale">
+        <ul class="nav__list" data-render="nav"></ul>
+      </nav>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu-mobile">
+        <span class="sr-only">Ouvrir le menu</span>
+        <span class="burger__line" aria-hidden="true"></span>
+        <span class="burger__line" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Menu plein écran (mobile) -->
+  <div class="menu" id="menu-mobile" aria-label="Menu">
+    <nav aria-label="Navigation mobile">
+      <ol class="menu__list" data-render="menu"></ol>
+    </nav>
+    <p class="menu__foot eyebrow" data-render="menu-foot"></p>
+  </div>
+
+  <main id="contenu">
+    <!-- ===================== ACCUEIL ===================== -->
+    <section class="hero" id="accueil" aria-label="Accueil" data-render="hero"></section>
+
+    <!-- ===================== QUI SUIS-JE ===================== -->
+    <section class="section about theme-inverse" id="qui-suis-je" aria-labelledby="titre-apropos" data-render="apropos"></section>
+
+    <!-- ===================== BANDEAU DÉFILANT (js/effets.js) ===================== -->
+    <div class="bandeau" data-render="bandeau" aria-hidden="true"></div>
+
+    <!-- ===================== PARCOURS ===================== -->
+    <section class="section parcours" id="parcours" aria-labelledby="titre-parcours" data-render="parcours"></section>
+
+    <!-- ===================== PROJET ===================== -->
+    <section class="section projet" id="projet" aria-labelledby="titre-projet" data-render="projet"></section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section contact theme-inverse" id="contact" aria-labelledby="titre-contact" data-render="contact"></section>
+  </main>
+
+  <!-- ===================== PIED DE PAGE ===================== -->
+  <footer class="site-footer" data-render="footer"></footer>
+
+  <noscript>
+    <p class="noscript">Fatoumata Binta Diallo · Candidate Miss Guinée France 2027. Activez JavaScript pour découvrir ce portfolio. Contact : <a href="mailto:ftabintdiallo@gmail.com">ftabintdiallo@gmail.com</a></p>
+  </noscript>
+
+  <!-- ===================== VISIONNEUSE PHOTO ===================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse photo" hidden>
+    <button class="lb__btn lb__close" type="button" aria-label="Fermer la visionneuse">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
+    <button class="lb__btn lb__prev" type="button" aria-label="Photo précédente">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
+    <figure class="lb__figure">
+      <img class="lb__img" src="data:," alt="">
+      <figcaption class="lb__caption"></figcaption>
+    </figure>
+    <button class="lb__btn lb__next" type="button" aria-label="Photo suivante">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
+    <p class="lb__count" aria-live="polite"></p>
+  </div>
+
+  <!-- Effets décoratifs : grain de pellicule + curseur -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <!-- Animations au défilement : GSAP + ScrollTrigger (sans ces fichiers,
+       le site fonctionne quand même, avec un parcours vertical classique) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script src="js/main.js"></script>
+  <script src="js/effets.js"></script>
+  <script src="js/citation.js"></script>
+  <script src="js/couronne.js"></script>
+  <script src="js/paillettes.js"></script>
+  <script src="js/intro.js"></script>
+</body>
+</html>
