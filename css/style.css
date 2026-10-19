@@ -776,9 +776,11 @@ button.tile { cursor: zoom-in; }
 .carte-reseau__pseudo { grid-column: 2; font-size: .72rem; letter-spacing: .14em; color: var(--muted); overflow-wrap: anywhere; }
 .carte-reseau__fleche {
   grid-column: 3; grid-row: 1 / 3;
-  font-size: 1.2rem; color: var(--accent);
-  transition: transform .5s var(--ease);
+  display: inline-flex; align-items: center;
+  color: var(--accent);               /* même or que le cercle des logos (#c9a96e sur fond noir) */
+  transition: transform 0.3s ease;
 }
+.carte-reseau__fleche svg { display: block; flex: none; }
 .carte-reseau { -webkit-tap-highlight-color: transparent; }
 .carte-reseau:focus-visible { border-color: var(--accent); }
 /* Effets de survol uniquement avec une souris : sur téléphone, le « survol »
