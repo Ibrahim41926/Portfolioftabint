@@ -745,15 +745,54 @@ button.tile { cursor: zoom-in; }
 }
 .coord a:hover, .coord a:focus-visible { background-size: 100% 1px; color: var(--accent); }
 
-.reseaux { display: flex; flex-wrap: wrap; gap: 1.6rem; }
-.reseaux a { font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; text-underline-offset: .5em; transition: color .4s; }
-.reseaux a:hover, .reseaux a:focus-visible { color: var(--accent); }
-
 @media (min-width: 960px) {
   .contact__grid { grid-template-columns: repeat(12, 1fr); column-gap: 2rem; }
   .contact__head { grid-column: 1 / 7; }
   .coordonnees { grid-column: 8 / 13; align-self: end; }
-  .reseaux { grid-column: 8 / 13; }
+}
+
+/* ---------- 11 bis. MES RÉSEAUX ---------- */
+.mes-reseaux-section { border-top: 1px solid var(--accent); }
+.mes-reseaux { display: grid; gap: 1rem; }
+.carte-reseau {
+  position: relative;
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center;
+  column-gap: 1.2rem;
+  padding: 1.4rem 1.5rem;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  transition: border-color .5s var(--ease), background-color .5s var(--ease);
+}
+.carte-reseau__logo {
+  grid-row: 1 / 3;
+  display: grid; place-items: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 1px solid var(--accent); color: var(--accent);
+  transition: transform .6s var(--ease);
+}
+.carte-reseau__logo svg { width: 24px; height: 24px; }
+.carte-reseau__nom { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.1; }
+.carte-reseau__pseudo { grid-column: 2; font-size: .72rem; letter-spacing: .14em; color: var(--muted); overflow-wrap: anywhere; }
+.carte-reseau__fleche {
+  grid-column: 3; grid-row: 1 / 3;
+  font-size: 1.2rem; color: var(--accent);
+  transition: transform .5s var(--ease);
+}
+.carte-reseau:hover, .carte-reseau:focus-visible { border-color: var(--accent); }
+.carte-reseau:hover .carte-reseau__logo { transform: rotate(-8deg) scale(1.06); }
+.carte-reseau:hover .carte-reseau__fleche { transform: translate(3px, -3px); }
+
+@media (min-width: 768px) {
+  .mes-reseaux { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+  /* En colonne sur ordinateur : logo en haut, nom et pseudo dessous */
+  .carte-reseau {
+    grid-template-columns: 1fr auto; row-gap: .5rem;
+    padding: 2rem 1.8rem 1.8rem; min-height: 230px; align-content: space-between;
+  }
+  .carte-reseau__logo { grid-row: 1; grid-column: 1; margin-bottom: 2.4rem; }
+  .carte-reseau__fleche { grid-row: 1; grid-column: 2; align-self: start; }
+  .carte-reseau__nom { grid-column: 1 / 3; }
+  .carte-reseau__pseudo { grid-column: 1 / 3; }
 }
 
 /* ---------- 12. PIED DE PAGE ---------- */

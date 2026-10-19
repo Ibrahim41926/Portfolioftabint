@@ -215,7 +215,7 @@
      ------------------------------------------------------------------ */
   function initTransitionsFond() {
     if (!actif("transitionsFond") || !avecGsap) return;
-    const zones = [".hero", "#qui-suis-je", ".bandeau", "#parcours", ".chapter--apogee", "#projet", "#contact", ".site-footer"]
+    const zones = [".hero", "#qui-suis-je", ".bandeau", "#parcours", ".chapter--apogee", "#projet", "#contact", "#reseaux", ".site-footer"]
       .map((s) => $(s))
       .filter(Boolean);
     const fond = (el) => getComputedStyle(el).getPropertyValue("--bg").trim();

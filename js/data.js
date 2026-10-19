@@ -63,6 +63,7 @@ window.SITE = {
     { libelle: "Parcours", cible: "#parcours" },
     { libelle: "Mon projet", cible: "#projet" },
     { libelle: "Contact", cible: "#contact" },
+    { libelle: "Réseaux", cible: "#reseaux" },
   ],
 
   /* ---------- Section « Qui suis-je ? » ---------- */
@@ -227,13 +228,21 @@ window.SITE = {
     bouton: "Me contacter",
   },
 
+  /* ---------- Section « Mes réseaux » ---------- */
+  mesReseaux: {
+    surtitre: "V — Mes réseaux",
+    titre: "Mes <em>réseaux</em>",
+    intro: "Suivez mon aventure au quotidien.",
+  },
+
   /* ---------- Réseaux sociaux ----------
      Collez l'adresse complète de chaque profil (ex. "https://www.instagram.com/…").
-     Un réseau laissé vide ("") n'est pas affiché sur le site. */
+     Un réseau laissé vide ("") n'est pas affiché sur le site.
+     Si les trois sont vides, la section « Mes réseaux » est masquée. */
   reseaux: {
-    instagram: "",
-    tiktok: "",
-    facebook: "",
+    instagram: "https://www.instagram.com/bint11diallo/",
+    tiktok: "https://www.tiktok.com/@bint_diallo",
+    facebook: "https://www.facebook.com/share/1EKgFFN7T6/",
   },
 
   /* ---------- Pied de page ---------- */
