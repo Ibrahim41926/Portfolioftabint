@@ -226,8 +226,8 @@
         <div class="chapter__deco reveal" style="--d:.35s" aria-hidden="true"><span class="chapter__bignum" data-parallax>${c.numero}</span></div>
         <div class="chapter__grid">
           <header class="chapter__head">
-            <p class="eyebrow reveal">${surtitre}</p>
             <h3 class="display chapter__title split" id="${c.id}-titre">${t(c.titre)}</h3>
+            <p class="eyebrow reveal" style="--d:.15s">${surtitre}</p>
             <p class="chapter__subtitle reveal"><em>${t(c.sousTitre)}</em>${annee}</p>
           </header>
           <div class="chapter__gallery reveal" style="--d:.15s">${galerie(c)}</div>
@@ -255,12 +255,12 @@
         <span class="chapter__marker" aria-hidden="true">✦</span>
         <div class="chapter__deco" aria-hidden="true"><span class="chapter__bignum" data-parallax>${c.numero}</span></div>
         <header class="apogee__head">
-          <p class="eyebrow reveal">Chapitre ${c.numero} · L'apogée</p>
           <span class="tricolore reveal" aria-hidden="true"><span></span><span></span><span></span></span>
           <h3 class="display apogee__title" id="${c.id}-titre">
             <span class="split">${t(c.titre)}</span>
             <span class="apogee__year reveal" style="--d:.3s">${c.annee}</span>
           </h3>
+          <p class="eyebrow reveal" style="--d:.4s">Chapitre ${c.numero} · L'apogée</p>
           <p class="apogee__subtitle reveal"><em>${t(c.sousTitre)}</em></p>
         </header>
         <div class="chapter__gallery">${galerie(c)}</div>
