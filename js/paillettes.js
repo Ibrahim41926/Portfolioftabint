@@ -3,8 +3,9 @@
    <canvas> en JavaScript pur, placé derrière le texte et les photos.
    - ≈ 70 particules visibles par écran sur ordinateur, 40 sur téléphone
      (réglables plus bas : PAR_ECRAN_ORDINATEUR / PAR_ECRAN_TELEPHONE) ;
-   - losanges de 1,5 à 4 px et petites étoiles scintillantes de 5 à 8 px,
-     en or foncé, or et or clair, légère rotation et scintillement ;
+   - moitié de petites couronnes (9 à 15 px), le reste en étoiles scintillantes
+     (5 à 8 px) et en losanges (1,5 à 4 px), en or foncé, or et or clair,
+     légère rotation et scintillement ;
    - l'animation ne tourne QUE lorsque le chapitre est visible (batterie).
    Pour la désactiver : effets.paillettes = false dans js/data.js.
    ========================================================================== */
@@ -51,7 +52,12 @@
   const PAR_ECRAN_ORDINATEUR = 70;
   const PAR_ECRAN_TELEPHONE = 40;
   const MAXIMUM = 240; // plafond, pour rester fluide sur téléphone
-  const PART_ETINCELLES = 0.18; // part des particules dessinées en petite étoile à 4 branches
+  const PART_COURONNES = 0.5;   // part des particules en forme de petite couronne
+  const PART_ETINCELLES = 0.15; // part des particules dessinées en petite étoile à 4 branches
+  // (le reste : petits losanges)
+
+  // Forme de la couronne : la même que le logo du site (dessin de 40 × 32, centré)
+  const COURONNE = new Path2D("M5 26 3 8l9 8 8-13 8 13 9-8-2 18Z");
 
   let largeur = 0;
   let hauteur = 0;
@@ -60,12 +66,15 @@
   const hasard = (min, max) => min + Math.random() * (max - min);
 
   function creer(enHaut) {
-    const etincelle = Math.random() < PART_ETINCELLES;
+    const tirage = Math.random();
+    const forme =
+      tirage < PART_COURONNES ? "couronne" : tirage < PART_COURONNES + PART_ETINCELLES ? "etincelle" : "losange";
+    const tailles = { couronne: [9, 15], etincelle: [5, 8], losange: [1.5, 4] };
     return {
       x: hasard(0, largeur),
       y: enHaut ? hasard(-40, -4) : hasard(0, hauteur),
-      etincelle,
-      taille: etincelle ? hasard(5, 8) : hasard(1.5, 4),
+      forme,
+      taille: hasard(...tailles[forme]),
       vitesse: hasard(8, 26),          // px par seconde : chute lente et variable
       derive: hasard(6, 18),           // amplitude du léger balancement
       phase: hasard(0, Math.PI * 2),
@@ -110,7 +119,14 @@
       ctx.save();
       ctx.translate(x, p.y);
       ctx.fillStyle = `rgba(${r}, ${v}, ${b}, ${eclat.toFixed(3)})`;
-      if (p.etincelle) {
+      if (p.forme === "couronne") {
+        // Petite couronne qui se balance doucement (elle reste à l'endroit)
+        const echelle = p.taille / 40;
+        ctx.rotate(Math.sin(p.rotation) * 0.35);
+        ctx.scale(echelle, echelle);
+        ctx.translate(-20, -16);
+        ctx.fill(COURONNE);
+      } else if (p.forme === "etincelle") {
         // Petite étoile à 4 branches qui scintille (sa taille pulse avec l'éclat)
         const s = p.taille * (0.6 + 0.4 * eclat);
         const e = Math.max(0.8, s * 0.16);
