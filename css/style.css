@@ -518,11 +518,11 @@ button.tile { cursor: zoom-in; }
 .chapter--droite .chapter__bignum,
 .chapter--panorama .chapter__bignum { right: auto; left: -.04em; }
 
-/* Téléphone : photo au-dessus, texte en dessous */
+/* Téléphone : le titre du chapitre d'abord, puis la photo, puis le texte */
 .chapter__grid {
   position: relative; z-index: 1;
   display: grid;
-  grid-template-areas: "gallery" "head" "body";
+  grid-template-areas: "head" "gallery" "body";
   gap: 2rem;
 }
 .chapter__head { grid-area: head; }

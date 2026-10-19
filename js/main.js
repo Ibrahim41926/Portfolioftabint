@@ -223,7 +223,7 @@
     return `
       <article class="chapter chapter--${c.miseEnPage}" id="${c.id}" aria-labelledby="${c.id}-titre">
         <span class="chapter__marker" aria-hidden="true">✦</span>
-        <div class="chapter__deco reveal" aria-hidden="true"><span class="chapter__bignum" data-parallax>${c.numero}</span></div>
+        <div class="chapter__deco reveal" style="--d:.35s" aria-hidden="true"><span class="chapter__bignum" data-parallax>${c.numero}</span></div>
         <div class="chapter__grid">
           <header class="chapter__head">
             <p class="eyebrow reveal">${surtitre}</p>
