@@ -243,6 +243,7 @@ window.SITE = {
     instagram: "https://www.instagram.com/bint11diallo/",
     tiktok: "https://www.tiktok.com/@bint_diallo",
     facebook: "https://www.facebook.com/share/1EKgFFN7T6/",
+    x: "https://x.com/bint11diallo",
   },
 
   /* ---------- Pied de page ---------- */
